@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieNowApp.Views.SearchMoviePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10,0,0,0">
+                <Image Source="search_icon.png"
+                       HeightRequest="25"/>
+                <Entry Placeholder="title..."
+                       Text="{Binding Title}"
+                       WidthRequest="300"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Year: "
+                       FontSize="20"
+                       Padding="20,5,0,5"
+                       TextColor="{StaticResource colorDark}"
+                       FontAttributes="Bold"
+                       BackgroundColor="{StaticResource colorWhite}"
+                       VerticalOptions="End"/>
+
+                <Entry Placeholder="year..."
+                       Text="{Binding Year}"
+                       WidthRequest="100"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Genres: "
+                       FontSize="20"
+                       Padding="20,5,0,5"
+                       TextColor="{StaticResource colorDark}"
+                       FontAttributes="Bold"
+                       BackgroundColor="{StaticResource colorWhite}"/>
+
+                <StackLayout Orientation="Horizontal" Padding="25,0,0,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsActionChecked}"/>
+                            <Label Text="action" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsAdventureChecked}"/>
+                            <Label Text="adventure" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsAnimationChecked}"/>
+                            <Label Text="animation" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsComedyChecked}"/>
+                            <Label Text="comedy" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsCrimeChecked}"/>
+                            <Label Text="crime" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsDramaChecked}"/>
+                            <Label Text="drama" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsFantasyChecked}"/>
+                            <Label Text="fantasy" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsHorrorChecked}"/>
+                            <Label Text="horror" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsMysteryChecked}"/>
+                            <Label Text="mystery" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsRomanceChecked}"/>
+                            <Label Text="romance" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsSciFiChecked}"/>
+                            <Label Text="sci-fi" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsShortChecked}"/>
+                            <Label Text="short" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{StaticResource colorDark}" IsChecked="{Binding IsThrillerChecked}"/>
+                            <Label Text="thriller" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <Button x:Name="SearchButton"
+                    Text="Search"
+                    HorizontalOptions="Center"
+                    WidthRequest="150"
+                    BorderRadius="200"
+                    BackgroundColor="{StaticResource colorGrey}"
+                    TextColor="{StaticResource colorWhite}"
+                    Command="{Binding SearchCommand}"
+                    VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

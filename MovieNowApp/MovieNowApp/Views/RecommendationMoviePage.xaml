@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieNowApp.Views.RecommendationMoviePage"
+             xmlns:helper="clr-namespace:MovieNowApp.Helper"
+             x:Name="RecommendationPage"
+             Title="Recommendation">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helper:ImageSourceConverter x:Key="ImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <BoxView HorizontalOptions="FillAndExpand" 
+                     WidthRequest="1"
+                     HeightRequest="5"
+                     Color="{StaticResource colorDark}"
+                     IsVisible="{Binding IsRecommendationExist}"/>
+
+            <Label Text="We recommend you this!"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource colorDark}"
+                   FontAttributes="Bold"
+                   BackgroundColor="{StaticResource colorWhite}"
+                   IsVisible="{Binding IsRecommendationExist}"/>
+
+            <BoxView HorizontalOptions="FillAndExpand" 
+                     WidthRequest="1"
+                     HeightRequest="5"
+                     Color="{StaticResource colorDark}"
+                     IsVisible="{Binding IsRecommendationExist}"/>
+
+            <CarouselView ItemsSource="{Binding RecommendMovies}" 
+                                  PeekAreaInsets="110"
+                                  HeightRequest="250">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.ToMovieDetailCommand, Source={x:Reference RecommendationPage}}" CommandParameter="{Binding Id}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Frame BackgroundColor="{StaticResource colorWhite}">
+                                <StackLayout>
+                                    <Label Text="{Binding Title}"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="12"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource colorDark}"/>
+                                    <Image HeightRequest="180"
+                                           Source="{Binding Poster, Converter={StaticResource ImageSourceConverter}}"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <Button x:Name="RecommendButton"
+                    Text="Recommend!"
+                    WidthRequest="120"
+                    HeightRequest="120"
+                    BorderRadius="100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="EndAndExpand"
+                    Margin="0,0,0,50"
+                    BackgroundColor="{StaticResource colorGrey}"
+                    TextColor="{StaticResource colorWhite}"
+                    Command="{Binding RecommendCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

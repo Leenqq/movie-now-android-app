@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieNowApp.Views.MovieDetailPage"
+             xmlns:helper="clr-namespace:MovieNowApp.Helper">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helper:ImageSourceConverter x:Key="ImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout BackgroundColor="{StaticResource colorDark}"
+                             Padding="0,0,0,20">
+                    <Image Source="{Binding Movie.Poster, Converter={StaticResource ImageSourceConverter}}"
+                           HeightRequest="300"
+                           WidthRequest="300"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Start"/>
+                </StackLayout>
+
+                <StackLayout Padding="20,0,0,0">
+                    <Label Text="{Binding Movie.Title}"
+                           HorizontalOptions="CenterAndExpand"
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource colorDark}"
+                           Padding="-20,0,0,0"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Genres:"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource colorDark}"/>
+                        <Label Text="{Binding Movie.Genre}"
+                           FontSize="20"
+                           TextColor="{StaticResource colorDark}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Year:"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource colorDark}"/>
+                        <Label Text="{Binding Movie.Year}"
+                           FontSize="20"
+                           TextColor="{StaticResource colorDark}"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <BoxView HorizontalOptions="FillAndExpand" 
+                             WidthRequest="1"
+                             HeightRequest="5"
+                             Color="{StaticResource colorDark}"/>
+
+                <StackLayout Padding="20,0,20,0"
+                             Orientation="Horizontal">
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Rating:"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource colorDark}"/>
+                        <Label FontSize="20"
+                               TextColor="{StaticResource colorDark}">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0} ({1})">
+                                    <Binding Path="AverageRating" />
+                                    <Binding Path="RatingsCount" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="EndAndExpand">
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand">
+                            <Label Text="Your rating:"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource colorDark}"/>
+                            <Label Text="{Binding UserRating.RatingNumber}"
+                           FontSize="20"
+                           TextColor="{StaticResource colorDark}"/>
+                        </StackLayout>
+                        <Button x:Name="RateButton"
+                                Text="Rate!"
+                                HeightRequest="40"
+                                BorderRadius="200"
+                                BackgroundColor="{StaticResource colorGrey}"
+                                TextColor="{StaticResource colorWhite}"
+                                Command="{Binding RateMovieCommand}"/>
+                    </StackLayout>
+                </StackLayout>
+                <BoxView HorizontalOptions="FillAndExpand" 
+                             WidthRequest="1"
+                             HeightRequest="5"
+                             Color="{StaticResource colorDark}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

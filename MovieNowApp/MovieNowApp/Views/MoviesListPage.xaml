@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieNowApp.Views.MoviesListPage"
+             xmlns:helper="clr-namespace:MovieNowApp.Helper"
+             x:Name="CurrentPage"
+             Title="Movies">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helper:ImageSourceConverter x:Key="ImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="search_icon.png"
+                     Order="Primary"
+                     Priority="0"/>
+        <ToolbarItem Text="Search"
+                     Order="Primary"
+                     Priority="0" 
+                     Command="{Binding BindingContext.OnSearchButton, Source={x:Reference CurrentPage}}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" 
+                             WidthRequest="1"
+                             HeightRequest="5"
+                             Color="{StaticResource colorDark}"/>
+
+                    <Label Text="Recent movies"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           TextColor="{StaticResource colorDark}"
+                           FontAttributes="Bold"
+                           BackgroundColor="{StaticResource colorWhite}"/>
+
+                    <BoxView HorizontalOptions="FillAndExpand" 
+                             WidthRequest="1"
+                             HeightRequest="5"
+                             Color="{StaticResource colorDark}"/>
+
+                    <CarouselView ItemsSource="{Binding RecentMovies}" 
+                                  PeekAreaInsets="110"
+                                  HeightRequest="250">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.CarouselItemTapped, Source={x:Reference CurrentPage}}" CommandParameter="{Binding Id}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Frame BackgroundColor="{StaticResource colorWhite}">
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontSize="12"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource colorDark}"/>
+                                            <Image HeightRequest="180"
+                                           Source="{Binding Poster, Converter={StaticResource ImageSourceConverter}}"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </StackLayout>
+
+                <StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" 
+                             WidthRequest="1"
+                             HeightRequest="5"
+                             Color="{StaticResource colorDark}"
+                             IsVisible="{Binding IsSearchResultExist}"/>
+                    
+                    <Label Text="Search result"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           TextColor="{StaticResource colorDark}"
+                           FontAttributes="Bold"
+                           BackgroundColor="{StaticResource colorWhite}"
+                           IsVisible="{Binding IsSearchResultExist}"/>
+
+                    <BoxView HorizontalOptions="FillAndExpand" 
+                             WidthRequest="1"
+                             HeightRequest="5"
+                             Color="{StaticResource colorDark}"
+                             IsVisible="{Binding IsSearchResultExist}"/>
+
+                    <ListView x:Name="searchResultListView"
+                              ItemsSource="{Binding SearchResult}"
+                              SelectedItem="{Binding SelectedSearchResult, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Padding="20,0,20,0">
+                                        <Label Text="{Binding Title}"
+                                       HorizontalOptions="FillAndExpand"
+                                       FontSize="15"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource colorDark}"/>
+                                        <Label Text="{Binding Year}"
+                                       HorizontalOptions="EndAndExpand"
+                                       FontSize="15"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource colorDark}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

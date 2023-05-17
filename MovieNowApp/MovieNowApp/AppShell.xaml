@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:MovieNowApp.Views"
+       x:Class="MovieNowApp.AppShell"
+       FlyoutBackgroundColor="{StaticResource colorWhite}"
+       Shell.BackgroundColor="{StaticResource colorDark}"
+       Shell.TitleColor="{StaticResource colorWhite}">
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <StackLayout BackgroundColor="{StaticResource colorWhite}">
+                <Image WidthRequest="250" Source="logo.png"/>
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    
+    
+    <FlyoutItem Title="Login" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" Route="LoginPage"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Register" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:RegistrationPage}" Route="RegistrationPage"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Movies">
+        <ShellContent ContentTemplate="{DataTemplate views:MoviesListPage}" Route="MoviesListPage"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Your ratings">
+        <ShellContent ContentTemplate="{DataTemplate views:UserRatingsPage}" Route="UserRatingsPage"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="SearchMovie" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:SearchMoviePage}" Route="SearchMoviePage"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Detail" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:MovieDetailPage}" Route="MovieDetailPage"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Recommendation">
+        <ShellContent ContentTemplate="{DataTemplate views:RecommendationMoviePage}" Route="RecommendationMoviePage"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings">
+        <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" Route="SettingsPage"/>
+    </FlyoutItem>
+
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}"/>
+</Shell>

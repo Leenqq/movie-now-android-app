@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieNowApp.Views.SettingsPage"
+             x:Name="SettingsView"
+             Title="Settings">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="CurrentPassword"
+                   Placeholder="Current password"
+                   Text="{Binding CurrentPassword}"
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   IsPassword="True"
+                   IsReadOnly="{Binding IsPasswordNotChanging}"/>
+
+            <Entry x:Name="ConfirmPassword"
+                   Placeholder="Confirm password"
+                   Text="{Binding ConfirmedPassword}"
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   IsPassword="True"
+                   IsReadOnly="{Binding IsPasswordNotChanging}"/>
+
+            <Entry x:Name="NewPassword"
+                   Placeholder="New password"
+                   Text="{Binding NewPassword}"
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   IsPassword="True"
+                   IsReadOnly="{Binding IsPasswordNotChanging}"/>
+
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="#D7596D"
+                   FontSize="12"
+                   HorizontalTextAlignment="Center"/>
+
+            <Button x:Name="ChangePasswordButton"
+                    Text ="{Binding BindingContext.ChangePasswordButtonText, Source={x:Reference SettingsView}, Mode=TwoWay}"
+                    HorizontalOptions="Center"
+                    WidthRequest="250"
+                    BorderRadius="200"
+                    BackgroundColor="{StaticResource colorGrey}"
+                    TextColor="{StaticResource colorWhite}"
+                    Command="{Binding ChangePasswordCommand}"/>
+
+            <Button x:Name="DeleteAccountButton"
+                    Text="Delete account"
+                    HorizontalOptions="Center"
+                    WidthRequest="250"
+                    BorderRadius="200"
+                    BackgroundColor="{StaticResource colorGrey}"
+                    TextColor="{StaticResource colorWhite}"
+                    Command="{Binding DeleteAccountCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
